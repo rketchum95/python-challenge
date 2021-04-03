@@ -17,10 +17,12 @@ with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
 	for row in csvreader:
 		#count #  of votas
 		vote_count+=1
-		print(vote_count)	
+	
 		
 
 
-
+print("Election Results")
+print("----------------------------")
+print(f"Total Votes: {vote_count}")
 
 
