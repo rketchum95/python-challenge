@@ -5,8 +5,8 @@ csv_electiondata = os.path.join('Resources','PyPoll_Resources_election_data.csv'
 
 candidates =[]
 candidate_votes=[]
-vote_count=0
-
+total_count=0
+candidate_percentage=0
 
 
 with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
@@ -16,11 +16,10 @@ with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
 
 	for row in csvreader:
 		#count #  of votas
-		vote_count+=1
+		total_count+=1
 		
 		#candidate name
 		candidate=row[2]
-
 
 		if candidate in candidates:
 			candidate_index=candidates.index(candidate)
@@ -29,13 +28,26 @@ with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
 			candidates.append(candidate)
 			candidate_votes.append(1)
 
+percentages=[]
+max_votes=candidate_votes
+max_index=0
 
+#find candidate percentages
+for candidate in candidates:
+	candidate_percentage=round(candidate_votes[candidate_index]/total_count*100,2)
+	percentages.append(candidate_percentage)
+	
+	#find election winner
+	if candidate_votes > max_votes:
+			max_votes = candidate_votes
+			max_index=count
+winner=candidates[max_index]
 
-
-#print election analysis results to terminal
 print("Election Results")
 print("----------------------------")
-print(f"Total Votes: {vote_count}")
-print(f"{candidates}: ({candidate_votes})")
-
-
+print(f"Total Votes: {total_count}")
+print("----------------------------")
+print(f"{candidates}: {percentages}% ({candidate_votes})")
+print("----------------------------")
+print(f"Winner: {winner}")
+print("----------------------------")
