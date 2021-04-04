@@ -34,7 +34,7 @@ max_votes=0
 
 #find candidate percentages
 for votes in range(len(candidates)):
-	candidate_percentage=round((candidate_votes[votes])/total_count*100,2)
+	candidate_percentage=round((candidate_votes[votes])/total_count*100,4)
 	percentages.append(candidate_percentage)
 	
 	#find election winner
@@ -47,7 +47,8 @@ print("Election Results")
 print("----------------------------")
 print(f"Total Votes: {total_count}")
 print("----------------------------")
-print(f"{candidates}: {percentages}% ({candidate_votes})")
+for votes in range(len(candidates)):
+	print(f"{candidates[votes]}: {percentages[votes]}% ({candidate_votes[votes]})")
 print("----------------------------")
 print(f"Winner: {winner}")
 print("----------------------------")
