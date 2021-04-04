@@ -43,6 +43,7 @@ for votes in range(len(candidates)):
 			max_index=votes
 winner=candidates[max_index]
 
+#terminal analysis:
 print("Election Results")
 print("----------------------------")
 print(f"Total Votes: {total_count}")
@@ -52,3 +53,16 @@ for votes in range(len(candidates)):
 print("----------------------------")
 print(f"Winner: {winner}")
 print("----------------------------")
+
+#text file:
+filename = 'PyPoll_Analysis.txt'
+with open (filename,'w') as file_object:
+	file_object.write("Election Results\n")
+	file_object.write("----------------------------\n")
+	file_object.write(f"Total Votes: {total_count}\n")
+	file_object.write("----------------------------\n")
+	for votes in range(len(candidates)):
+		file_object.write(f"{candidates[votes]}: {percentages[votes]}% ({candidate_votes[votes]})\n")
+	file_object.write("----------------------------\n")
+	file_object.write(f"Winner: {winner}\n")
+	file_object.write("----------------------------\n")
