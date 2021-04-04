@@ -15,7 +15,7 @@ with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
 	csv_header=next(csvreader)
 
 	for row in csvreader:
-		#count #  of votas
+		#count #  of votes
 		total_count+=1
 		
 		#candidate name
@@ -26,21 +26,21 @@ with open(csv_electiondata, newline='',encoding='utf-8') as csvfile:
 			candidate_votes[candidate_index]=candidate_votes[candidate_index]+1
 		else:
 			candidates.append(candidate)
-			candidate_votes.append(3)
+			candidate_votes.append(1)
 
 percentages=[]
 max_votes=candidate_votes
 max_votes=0
 
 #find candidate percentages
-for candidate_votes in range(len(candidates)):
-	candidate_percentage=round((candidate_votes)/total_count*100,2)
+for votes in range(len(candidates)):
+	candidate_percentage=round((candidate_votes[votes])/total_count*100,2)
 	percentages.append(candidate_percentage)
 	
 	#find election winner
-	if int(candidate_votes) > max_votes:
-			max_votes = candidate_votes
-			max_index=candidate_votes
+	if candidate_votes[votes]> max_votes:
+			max_votes = candidate_votes[votes]
+			max_index=votes
 winner=candidates[max_index]
 
 print("Election Results")
