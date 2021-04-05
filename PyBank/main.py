@@ -1,12 +1,15 @@
+#import dependencies
 import os
 import csv
 
+#read csv file
 csv_budgetdata = os.path.join('Resources','budget_data.csv')
 
 #Variable definitions
 months=[]
 monthly_changes=[]
 
+#set variables to zero
 count_months=0
 net_profit=0
 previous_profit=0
@@ -14,6 +17,7 @@ current_profit=0
 MoM_change=0
 total_change=0
 
+#for loop to get variable amounts for analysis calculations:
 with open(csv_budgetdata, newline='',encoding='utf-8') as csvfile:
 	csvreader=csv.reader(csvfile,delimiter=",")
 	
