@@ -33,22 +33,25 @@ with open(csv_budgetdata, newline='',encoding='utf-8') as csvfile:
 			previous_profit=current_profit
 		else:
 			#calculate Month over Month(MoM) change
+			
 			MoM_change=current_profit-previous_profit
-
+			
 			#add each month to month list
 			months.append(row[0])
 
 			#append to monthly changes list
 			monthly_changes.append(MoM_change)
+
 						
 			#Reset previous month profit for next loop
 			previous_profit = current_profit
 
 	#calculate total changes over time period
 	total_change+=MoM_change
-
+	print(total_change)
 	#calculate average changes over period, minus 1 month for first month
 	average_change=round(total_change/(count_months-1),2)
+	print(average_change)
 
 	#find max increase/decrease in monthly changes
 	max_increase = max(monthly_changes)
@@ -72,13 +75,18 @@ print(f"Greatest Increase in Profits: {best_month}  ${max_increase}")
 print(f"Greatest Decrease in Profits: {worst_month} ${min_increase}")
 
 #export analysis to text file:
+save_path = os.path.join('Analysis','PyBank_Analysis.txt')
 
 filename = 'PyBank_Analysis.txt'
-with open (filename,'w') as file_object:
-	file_object.write("Financial Analysis\n")
-	file_object.write("---------------------\n")
-	file_object.write(f"Total Months: {count_months}\n")
-	file_object.write(f"Total: ${net_profit}\n")
-	file_object.write(f"Average Change: ${average_change}\n")
-	file_object.write(f"Greatest Increase in Profits: {best_month}  ${max_increase}\n")
-	file_object.write(f"Greatest Decrease in Profits: {worst_month} ${min_increase}\n")
+
+with open (save_path,'w') as file_object:
+	file_object = csv.writer(file_object)
+	
+	file_object.writerow(["Financial Analysis"])
+	file_object.writerow(["---------------------"])
+	file_object.writerow([f"Total Months: {count_months}"])
+	file_object.writerow([f"Total: ${net_profit}"])
+	file_object.writerow([f"Average Change: ${average_change}"])
+	file_object.writerow([f"Greatest Increase in Profits: {best_month}  ${max_increase}"])
+	file_object.writerow([f"Greatest Decrease in Profits: {worst_month} ${min_increase}"])
+
