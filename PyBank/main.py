@@ -78,7 +78,7 @@ save_path = os.path.join('Analysis','PyBank_Analysis.txt')
 
 #filename = 'PyBank_Analysis.txt'
 
-with open (save_path,'w') as file_object:
+with open (save_path,'w',newline='') as file_object:
 	file_object = csv.writer(file_object)
 	
 	file_object.writerow(["Financial Analysis"])
