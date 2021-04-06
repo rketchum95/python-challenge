@@ -57,14 +57,18 @@ print(f"Winner: {winner}")
 print("----------------------------")
 
 # save analysis to text file:
-filename = 'PyPoll_Analysis.txt'
-with open (filename,'w') as file_object:
-	file_object.write("Election Results\n")
-	file_object.write("----------------------------\n")
-	file_object.write(f"Total Votes: {total_count}\n")
-	file_object.write("----------------------------\n")
+save_path = os.path.join('Analysis','PyPoll_Analysis.txt')
+
+#filename = 'PyPoll_Analysis.txt'
+
+with open (save_path,'w',newline='') as file_object:
+	file_object=csv.writer(file_object)
+	file_object.writerow(["Election Results"])
+	file_object.writerow(["----------------------------"])
+	file_object.writerow([f"Total Votes: {total_count}"])
+	file_object.writerow(["----------------------------"])
 	for votes in range(len(candidates)):
-		file_object.write(f"{candidates[votes]}: {percentages[votes]}% ({candidate_votes[votes]})\n")
-	file_object.write("----------------------------\n")
-	file_object.write(f"Winner: {winner}\n")
-	file_object.write("----------------------------\n")
+		file_object.writerow([f"{candidates[votes]}: {percentages[votes]}% ({candidate_votes[votes]})"])
+	file_object.writerow(["----------------------------"])
+	file_object.writerow([f"Winner: {winner}"])
+	file_object.writerow(["----------------------------"])
