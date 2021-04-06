@@ -35,7 +35,7 @@ with open(csv_budgetdata, newline='',encoding='utf-8') as csvfile:
 			#calculate Month over Month(MoM) change
 			
 			MoM_change=current_profit-previous_profit
-			
+
 			#add each month to month list
 			months.append(row[0])
 
@@ -47,12 +47,11 @@ with open(csv_budgetdata, newline='',encoding='utf-8') as csvfile:
 			previous_profit = current_profit
 
 	#calculate total changes over time period
-	total_change+=MoM_change
-	print(total_change)
+	total_change=sum(monthly_changes)
+	
 	#calculate average changes over period, minus 1 month for first month
 	average_change=round(total_change/(count_months-1),2)
-	print(average_change)
-
+	
 	#find max increase/decrease in monthly changes
 	max_increase = max(monthly_changes)
 	min_increase = min(monthly_changes)
@@ -77,7 +76,7 @@ print(f"Greatest Decrease in Profits: {worst_month} ${min_increase}")
 #export analysis to text file:
 save_path = os.path.join('Analysis','PyBank_Analysis.txt')
 
-filename = 'PyBank_Analysis.txt'
+#filename = 'PyBank_Analysis.txt'
 
 with open (save_path,'w') as file_object:
 	file_object = csv.writer(file_object)
